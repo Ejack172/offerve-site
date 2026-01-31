@@ -1,0 +1,155 @@
+---
+layout: post
+title: "Sample CMS Blog Post"
+slug: "sample-cms-post"
+category: "Free Loot"
+date: 2026-01-31T15:00:00.000Z
+featured_image: "/assets/uploads/sample-image.jpg"
+summary: "This is a sample blog post created through the CMS to demonstrate the template structure."
+what_you_get:
+- "₹500 cashback on first transaction"
+- "No minimum purchase required"
+- "Instant credit to wallet"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Offerve</title>
+    <meta name="description" content="{{summary}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">Offerve</div>
+                <nav>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../category-free-loot.html">Free Loot</a></li>
+                        <li><a href="../category-coupons.html">Coupons</a></li>
+                        <li><a href="../category-app-offers.html">App Offers</a></li>
+                        <li><a href="../category-shopping-deals.html">Shopping Deals</a></li>
+                    </ul>
+                </nav>
+                <button class="search-btn">Search</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <article class="content-wrapper" style="max-width: 900px; padding-top: 48px; padding-bottom: 48px;">
+            <!-- Post Header -->
+            <header class="post-header">
+                <span class="post-category">{{category}}</span>
+                <h1 class="post-title">{{title}}</h1>
+            </header>
+
+            <!-- Featured Image -->
+            <div class="post-featured-image">
+                <img src="{{featured_image}}" alt="{{title}}">
+            </div>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                <!-- Summary -->
+                <p><strong>{{summary}}</strong></p>
+
+                <!-- Main Content -->
+                <div class="post-body">
+                    {{body}}
+                </div>
+
+                <!-- What You Get Section -->
+                {% if what_you_get %}
+                <div class="info-box">
+                    <h3>What You Get</h3>
+                    <ul>
+                        {% for item in what_you_get %}
+                        <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Steps Section -->
+                {% if steps %}
+                <div class="steps-box">
+                    <h2>Steps to Claim</h2>
+                    {{steps}}
+                </div>
+                {% endif %}
+
+                <!-- Important Notes -->
+                {% if notes %}
+                <div class="notes-box">
+                    <h3>Important Notes</h3>
+                    {{notes}}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Share Section -->
+            <div class="share-section">
+                <p class="share-title">Share this deal:</p>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn"
+                        onclick="navigator.share({title: '{{title}}', url: window.location.href}); return false;">📱</a>
+                    <a href="#" class="share-btn"
+                        onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!'); return false;">🔗</a>
+                    <a href="mailto:?subject={{title}}&body={{summary}}%20-%20{{featured_image}}"
+                        class="share-btn">✉️</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Related Posts -->
+        {% if related_posts %}
+        <section class="related-posts">
+            <h2>Related Offers</h2>
+            <div class="posts-grid"
+                style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); max-width: 1200px; margin: 0 auto;">
+                {% for post_slug in related_posts %}
+                <div class="related-post" data-slug="{{post_slug}}">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Footer -->
+        <footer class="footer">
+            <ul class="footer-links">
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy.html">Privacy</a></li>
+                <li><a href="https://t.me/offerve">Telegram</a></li>
+            </ul>
+            <p class="footer-copyright">© 2026 Offerve.com - All rights reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+
+</html>

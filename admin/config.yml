@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: Ejack172/offerve-site
+  branch: main
+
+# Local development mode (uncomment for testing)
+# local_backend: true
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "html"
+    format: "frontmatter"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., 'upi-cashback-offer')" }
+      - { label: "Category", name: "category", widget: "select", options: ["Free Loot", "Coupons", "App Offers", "Shopping Deals"] }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "featured_image", widget: "image" }
+      - { label: "Summary", name: "summary", widget: "text", hint: "Short excerpt shown on cards (150 characters max)" }
+      - { label: "Body Content", name: "body", widget: "html", hint: "Main blog post content - use the rich text editor" }
+      - label: "What You Get"
+        name: "what_you_get"
+        widget: "list"
+        required: false
+        hint: "List of benefits/items included in the offer"
+      - { label: "Steps to Claim", name: "steps", widget: "html", required: false, hint: "Step-by-step instructions" }
+      - { label: "Important Notes", name: "notes", widget: "html", required: false, hint: "Terms, conditions, or warnings" }
+      - label: "Related Posts"
+        name: "related_posts"
+        widget: "list"
+        required: false
+        hint: "Slugs of related blog posts to show"
+        field: { label: "Post Slug", name: "slug", widget: "string" }
