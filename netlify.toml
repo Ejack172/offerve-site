@@ -1,0 +1,24 @@
+[build]
+  # Build command (not needed for static sites, but can be specified)
+  publish = "."
+
+# Redirect rules for clean URLs and SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Role = ["admin"]}
+
+# Enable Netlify Identity for authentication
+[build.environment]
+  # No build environment needed for static sites
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
